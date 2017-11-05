@@ -6,6 +6,20 @@ export default class App extends React.Component {
         super(props);
         this.state = { text: '' }
     }
+
+    translate(word) {
+        switch(word.length) {
+            case 1:
+                return '🍪';
+            case 2:
+                return '🍩';
+            case 3:
+                return '🍟'
+            default:
+                return '🍕';
+        }
+    }
+
     render() {
         return (
             <View style={{padding: 20}}>
@@ -15,7 +29,7 @@ export default class App extends React.Component {
                   onChangeText={(text) => this.setState({text})}
               />
                 <Text style={{padding: 10, fontSize: 42}}>
-                    {this.state.text.split(' ').map(word => word && '🍕').join(' ')}
+                    {this.state.text.split(' ').map(word => word && this.translate(word)).join(' ')}
                 </Text>
             </View>
           );
@@ -25,7 +39,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#64cdff',
         alignItems: 'center',
         justifyContent: 'center',
     },
